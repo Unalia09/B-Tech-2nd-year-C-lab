@@ -76,3 +76,64 @@ int main(){
     }
     return 0;
 }
+#include <iostream>
+#include <string>
+using namespace std;
+struct cricket{
+    string tname;
+    string pname;
+    float bavg;
+    void read() {
+    cin.ignore(); // Clear any leftover input in the buffer
+    cout << "Enter the team name: ";
+    getline(cin, tname); // Use getline to read full team name
+    cout << "Enter the player name: ";
+    getline(cin, pname); // Use getline to read full player name
+    cout << "Enter batting average: ";
+    cin >> bavg; // Read batting average normally
+}
+
+    void display(){
+        cout<<tname<<" "<<pname<<" "<<bavg<<endl;
+    }
+    
+};
+void sort(cricket array[], int size){
+        cricket temp;
+        int i,j;
+        for(i=0;i<size-1;i++){
+            for(j=0;j<size-i-1;j++){
+                if(array[j].tname>array[j+1].tname){
+                    temp=array[j];
+                    array[j]=array[j+1];
+                    array[j+1]=temp;
+                }
+            }
+        }
+    }
+#structure for sorting using the tname
+int main() {
+    cricket c[10];
+    int n;
+    cout << "Enter the number of players you wish to enter: ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        c[i].read();
+    }
+
+    cout << "Player details before sorting:\n";
+    for (int i = 0; i < n; i++) {
+        c[i].display();
+    }
+
+    // Call the sort function
+    sort(c, n);
+
+    cout << "Player details after sorting by team name:\n";
+    for (int i = 0; i < n; i++) {
+        c[i].display();
+    }
+
+    return 0;
+}
